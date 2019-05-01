@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useReducer , useContext } from "react";
 import styled from "styled-components";
 const SearchBar = () => {
   return (
