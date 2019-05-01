@@ -1,13 +1,21 @@
-import React, { useReducer , useContext } from "react";
-import styled from "styled-components";
+import React, { useContext } from 'react';
+import styled from 'styled-components';
+import { StoreContext } from '../Context/StoreContext';
+import { types } from '../Context/Reducers';
 const SearchBar = () => {
+  const store = useContext(StoreContext);
   return (
     <StSearch>
       <input
-        // value={searchQuery}
-        // onChange={e => setSearchQuery(e.target.value)}
-        type="text"
-        placeholder="Search..."
+        onChange={e =>
+          store.dispatch({
+            type: types.SEARCH_ITEMS,
+            keyword: e.target.value
+          })
+        }
+        value={store.state.searchquery}
+        type='text'
+        placeholder='Search...'
       />
     </StSearch>
   );

@@ -1,15 +1,26 @@
-import React, { useContext } from "react";
-import styled from "styled-components";
-import SearchContext, { SearchContextProvider } from "../Context/SearchContext";
-import Card from "./Card";
+import React, { useContext } from 'react';
+import styled from 'styled-components';
+import Card from './Card';
+import { StoreContext } from '../Context/StoreContext';
 
-const CardGrid = props => {
-  const value = useContext(SearchContextProvider);
+const CardGrid = () => {
+  const store = useContext(StoreContext);
+  const { pokemons, searchquery } = store.state;
+
+  //filtering items based on searchquery coming from context
+  const filteredPokemons = pokemons.filter(pokemon =>
+    pokemon.name
+      .toString()
+      .toLowerCase()
+      .startsWith(searchquery)
+  );
   return (
     <StCardGrid>
-      {value.arr.map(i => (
-        <Card key={i.name} name={i.name} imgLink={i.pic} />
-      ))}
+      {filteredPokemons.length > 0
+        ? filteredPokemons.map(i => (
+            <Card key={i.id} name={i.name} imgLink={i.image} />
+          ))
+        : 'We have no such thing!!!'}
     </StCardGrid>
   );
 };

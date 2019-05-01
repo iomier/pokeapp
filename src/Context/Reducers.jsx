@@ -1,17 +1,19 @@
-import { types } from '@babel/core';
-
+import { pokemons } from '../utils/list';
 const initialState = {
-  techList: ['TypeScript', 'ReactHooks']
+  pokemons: pokemons,
+  searchquery: '',
+  cartitems: []
 };
 
-const Types = {
+const types = {
   SET_TECH_LIST: 'SET_TECH_LIST',
   ADD_TO_TECH_LIST: 'ADD_TO_TECH_LIST',
-  REMOVE_FROM_TECH_LIST: 'REMOVE_FROM_TECH_LIST'
+  REMOVE_FROM_TECH_LIST: 'REMOVE_FROM_TECH_LIST',
+  SEARCH_ITEMS: 'SEARCH_ITEMS'
 };
 
 const reducer = (state = initialState, action) => {
-  switch (type.action) {
+  switch (action.type) {
     case types.SET_TECH_LIST:
       return { ...state, techList: action.payload };
     case types.ADD_TO_TECH_LIST:
@@ -21,6 +23,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         techList: state.techList.filter(tech => tech !== action.payload)
       };
+    case types.SEARCH_ITEMS:
+      return { ...state, searchquery: action.keyword };
     default:
       throw new Error('Not good Switch Case');
   }
