@@ -1,3 +1,5 @@
+import { types } from './Reducers';
+
 export const useActions = (state, dispatch) => {
   function addTechToListAction(newTech) {
     const techIndex = state.techList.indexOf(newTech);
