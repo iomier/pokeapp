@@ -18,7 +18,7 @@ const CardGrid = () => {
     <StCardGrid>
       {filteredPokemons.length > 0
         ? filteredPokemons.map(i => (
-            <Card key={i.id} name={i.name} imgLink={i.image} />
+            <Card key={i.id} name={i.name} imgLink={i.image} id={i.id} />
           ))
         : 'We have no such thing!!!'}
     </StCardGrid>

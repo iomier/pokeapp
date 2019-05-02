@@ -5,11 +5,13 @@ import SearchBar from './Components/SearchBar';
 
 import { StoreProvider } from './Context/StoreContext';
 import Header from './Components/Header';
+import Cart from './Components/Cart';
 
 const App = props => {
   return (
     <StoreProvider>
       <StApp>
+        <Cart />
         <Header />
         <SearchBar />
         <div className='ad' />
